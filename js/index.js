@@ -96,15 +96,18 @@ window.addEventListener('load', async() => {
   // Todolist Loop
   for(let i = 1; i < todoListLength + 1; i++){
     const getTodoList = await callStatic('get_todolist_by_address', [user_address]);
-    todoListArr.push({
-      index_counter:i,
-      todo:getTodoList.title,
-    //   id:getProjectList.id,
-      created:new Date(getTodoList.created),
-      completedAt:new Date(getTodoList.completedAt),
-      creator:getTodoList.creator,
-      completed:getTodoList.completed
-    })
+    if(getTodoList){
+        todoListArr.push({
+            index_counter:i,
+            todo:getTodoList.todo,
+          //   id:getProjectList.id,
+            created:new Date(getTodoList.created),
+            completedAt:new Date(getTodoList.completedAt),
+            creator:getTodoList.creator,
+            completed:getTodoList.completed
+          })
+    }
+
 }
 renderTodoList()
 $("#loader").hide();
