@@ -132,7 +132,7 @@ console.log(new_todo)
 })
  
 // Complete Todo
-$("#getProject").on("click",".complete", async function(event){
+$("#getTodos").on("click",".complete", async function(event){
   $("#loader").show();
 
   console.log("Completed Task Clicked")
@@ -152,7 +152,7 @@ $("#getProject").on("click",".complete", async function(event){
 
 
 
-$("#getProject").on("click",".delete", async function(event){
+$("#getTodos").on("click",".delete", async function(event){
     $("#loader").show();
   
     console.log("Completed Task Clicked")
