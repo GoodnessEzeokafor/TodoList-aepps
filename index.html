@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> TodoList aepp</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  
+</head>
+</head>
+<body>
+  <nav class="navbar navbar-dark indigo">
+    <span class="navbar-text white-text">
+      TodoList aepp
+    </span>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <!-- Crete FOrm -->
+          <div id="loader" class=" mt-4 text-center text-bold mb-4">####### LOADING #######</div>
+          <div class="text-center border border-light p-5" id="add_project_form">
+            <p class="h4 mb-4">Add Todo</p>
+            <p>Create A Personal TodoList </p>  
+          <!-- Name -->
+            <input type="text" id="title" class="form-control mb-4" placeholder="Enter Todo">
+              
+            <button class="btn btn-indigo btn-block" type="button" id="addButton">Add Todo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      <!-- list todo section -->
+      <!-- Card -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 col-sm-12 mt-3" id="getTodos">
+            <!-- Card -->
+            
+          </div>
+        </div>
+      </div>
+
+    <!-- end list todo section -->
+    
+    <script id="template" type="x-tmpl-mustache">
+      {{#todoListArr}}
+      <div class="card testimonial-card mb-3">
+        <!-- Background color -->
+        <div class="card-up indigo lighten-1"></div>
+        <!-- Avatar -->
+        <div class="avatar mx-auto white">
+          <img width="250" height="250" src="img/432436.png" class="rounded-circle" alt="woman avatar">
+        </div>
+        <!-- Content -->
+        <div class="card-body">
+          <!-- Name -->
+          <h4 class="card-title">{{todo}}</h4>
+          Creator:{{creator}}  
+          <hr>
+          <!-- Quotation -->
+          <p>Created At: {{created}}</p>
+          <p>Completed At: {{deadline}}</p>
+          <button  class="btn btn-indigo btn-sm complete">Complete</button>
+          <button  class="btn btn-danger btn-sm delete">Delete</button>
+        </div>
+      </div>
+      {{/todoListArr }}
+    </script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+    <!-- aeternity -->
+    <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+  </html>

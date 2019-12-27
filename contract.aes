@@ -1,0 +1,41 @@
+contract TodoList =
+  record todolist= {
+        todo:string,
+        creator:address,
+        created:int,
+        completed:bool}
+  record state = {
+    index_counter : int,
+    todolists : map(address, todolist)}
+    
+  stateful entrypoint init() =
+    { index_counter = 0,
+      todolists = {}}
+    
+  stateful entrypoint add_new_todolist(_todo : string)=
+    if(_todo != "")
+      let new_todo ={todo =_todo, creator=Call.caller,created=Chain.timestamp,completed=false}
+      let index = state.index_counter + 1
+      put(state{todolists[Call.caller] = new_todo, index_counter=index})
+        
+  entrypoint get_todolist_length() : int = 
+    state.index_counter
+
+  entrypoint get_todolist_by_address(_owner:address)=
+    switch(Map.lookup(_owner, state.todolists))
+      None => abort("There was no Todolist with this index.")
+      Some(x) => x
+
+  stateful entrypoint complete_todo(_owner:address) =
+    let get_todo = get_todolist_by_address(_owner)
+    let new_todo ={
+                todo=get_todo.todo, 
+                creator=get_todo.creator,
+                created=get_todo.created, completed=true}
+    put(state{todolists[get_todo.creator] = new_todo})
+
+  stateful entrypoint delete_todo(_owner:address)=
+    switch(Map.lookup(_owner, state.todolists))
+      Some(x) => put(state{todolists = Map.delete(_owner,state.todolists)})
+
+// ct_A8vyrpcLoYsR7sNCdpgt5q4WVi17qGbeFKHcAH5ECKJCvK7GV
