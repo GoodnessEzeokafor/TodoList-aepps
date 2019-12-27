@@ -106,9 +106,9 @@ window.addEventListener('load', async() => {
       completed:getTodoList.completed
     })
 }
-
-renderTodoList();  
+renderTodoList()
 $("#loader").hide();
+
 })
 
 
@@ -143,6 +143,7 @@ $("#getProject").on("click",".complete", async function(event){
   console.log("--------------------------")
   
   event.preventDefault();
+  renderTodoList()
   $("#loader").hide();
 });
 
@@ -161,6 +162,7 @@ $("#getProject").on("click",".delete", async function(event){
     console.log(delete_all)
     console.log("--------------------------")
     event.preventDefault();
+    renderTodoList()
     $("#loader").hide();
   });
   
